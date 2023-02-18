@@ -55,8 +55,9 @@ int rnd_(int num) {
 // rnd returns a random integer between 0 and num inclusive
 int rnd(int num) {
     nanohop();
+    num++;
     float rand=num*random();
     int result=rand;
-    if (rand-result>0.5) {result ++;}
+    if (rand-result>0.5&&result<num) {result ++;}
     return result;
 }
