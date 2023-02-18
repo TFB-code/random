@@ -41,17 +41,22 @@ float random() {
     }
     strrev(srand);
 
-    if (strlen(srand)>1) {
-        sprintf(fsrand,"0.%s",srand+1);
-    } else {
-        sprintf(fsrand,"0.%s",srand);
-    }
+    sprintf(fsrand,"0.%s",srand);
 
     return atof(fsrand);
 }
 
-// rnd returns a random integer between 0 and num inclusive
-int rnd(int num) {
+// rnd_ returns a simple random integer between 0 and num inclusive
+int rnd_(int num) {
     num++;
     return num*random();
+}
+
+// rnd returns a random integer between 0 and num inclusive
+int rnd(int num) {
+    nanohop();
+    float rand=num*random();
+    int result=rand;
+    if (rand-result>0.5) {result ++;}
+    return result;
 }
